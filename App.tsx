@@ -7,7 +7,7 @@ import { Home } from './src/screens/Home'
 import { ErrorComponent } from './src/components/ErrorComponent'
 
 export default function App() {
-  const [isFontsLoaded] = useFonts({
+  const [isFontsLoaded, error] = useFonts({
     Roboto_400Regular,
     Roboto_700Bold
   })
