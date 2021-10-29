@@ -1,11 +1,17 @@
 import React from 'react'
 import { KeyboardAvoidingView, Platform, View } from 'react-native'
 
+import { useAuth } from '../../hooks/useAuth'
+
 import { Header } from '../../components/Header'
+import { SendMessageForm } from '../../components/SendMessageForm'
+import { SignInBox } from '../../components/SignInBox'
 import { MessageList } from '../../components/MessageList'
 import { styles } from './styles'
 
 export function Home() {
+  const { user } = useAuth()
+
   return (
     <KeyboardAvoidingView
       style={styles.keyboardContainer}
@@ -14,6 +20,7 @@ export function Home() {
       <View style={styles.container}>
         <Header />
         <MessageList />
+        {!!user ? <SendMessageForm /> : <SignInBox />}
       </View>
     </KeyboardAvoidingView>
   )
