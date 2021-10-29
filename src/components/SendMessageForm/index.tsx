@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { View, Alert, TextInput, Keyboard } from 'react-native'
 
+import { api } from '../../services/api'
 import { Button } from '../Button'
 import { COLORS } from '../../theme'
 import { styles } from './styles'
@@ -10,17 +11,20 @@ export function SendMessageForm() {
   const [isSendingMessage, setIsSendingMessage] = useState(false)
 
   async function sendTextMessage() {
-    setIsSendingMessage(true)
+    if (!text.trim()) return
 
-    if (!text.trim()) {
-      console.log('trimmed')
-      return
-    } else {
-      console.log('not trimmed')
+    try {
+      setIsSendingMessage(true)
+      await api.post('messages', { text })
+
+      setTextMessage('')
+      Keyboard.dismiss()
+      Alert.alert('Message sent successfuly')
+      setIsSendingMessage(false)
+    } catch (e) {
+      e instanceof Error && Alert.alert('Error sending message', String(e.message))
+      setIsSendingMessage(false)
     }
-
-
-    Alert.alert('Message sent successfuly')
   }
 
   return (
