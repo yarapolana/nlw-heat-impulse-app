@@ -1,12 +1,18 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { KeyboardAvoidingView, Platform, View } from 'react-native'
+
 import { Header } from '../../components/Header'
 import { styles } from './styles'
 
 export function Home() {
   return (
-    <View style={styles.container}>
-      <Header />
-    </View>
+    <KeyboardAvoidingView
+      style={styles.keyboardContainer}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
+      <View style={styles.container}>
+        <Header />
+      </View>
+    </KeyboardAvoidingView>
   )
 }
