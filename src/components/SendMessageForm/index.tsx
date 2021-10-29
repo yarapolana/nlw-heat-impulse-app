@@ -32,6 +32,7 @@ export function SendMessageForm() {
         placeholderTextColor={COLORS.GRAY_PRIMARY}
         multiline
         maxLength={140}
+        autoCorrect={false}
         keyboardAppearance='dark'
         editable={!isSendingMessage}
         style={styles.input}
