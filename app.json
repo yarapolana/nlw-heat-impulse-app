@@ -16,6 +16,7 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "scheme": "nlwheatapp",
     "ios": {
       "supportsTablet": true
     },
